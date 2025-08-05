@@ -5,7 +5,6 @@ from airflow.operators.python import PythonOperator
 # Görev olarak çalışacak Python fonksiyonu
 def say_hello1():
     print("Merhaba, Airflow!")
-
 # Görev olarak çalışacak Python fonksiyonu
 def say_hello2():
     print("runing!")
