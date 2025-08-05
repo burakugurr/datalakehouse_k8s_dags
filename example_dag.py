@@ -15,6 +15,7 @@ def say_hello2():
 def say_hello3():
     print("goodby")
 # DAG varsayılan argümanlar
+# Default args
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
@@ -24,15 +25,16 @@ default_args = {
     'retry_delay': timedelta(minutes=5),
 }
 
+
 # DAG tanımı
 with DAG(
-    'ornek_dag',
+    'example_airflow_3',
     default_args=default_args,
-    description='Basit bir örnek DAG',
-    schedule_interval='@daily',  # Her gün çalışır
-    start_date=datetime(2025, 8, 1),
-    catchup=False,  # Eski tarihli işleri çalıştırma
-    tags=['ornek', 'tutorial'],
+    description='Airflow 3.0.1 ile uyumlu örnek DAG',
+    schedule_interval=timedelta(days=1),
+    start_date=datetime(2025, 8, 6),
+    catchup=False,
+    tags=['example'],
 ) as dag:
 
     start =  PythonOperator(
