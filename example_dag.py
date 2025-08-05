@@ -1,12 +1,19 @@
 from datetime import datetime, timedelta
 from airflow import DAG
-from airflow.operators.dummy import DummyOperator
 from airflow.operators.python import PythonOperator
 
 # Görev olarak çalışacak Python fonksiyonu
-def say_hello():
+def say_hello1():
     print("Merhaba, Airflow!")
 
+# Görev olarak çalışacak Python fonksiyonu
+def say_hello2():
+    print("runing!")
+
+
+# Görev olarak çalışacak Python fonksiyonu
+def say_hello3():
+    print("goodby")
 # DAG varsayılan argümanlar
 default_args = {
     'owner': 'airflow',
@@ -28,14 +35,20 @@ with DAG(
     tags=['ornek', 'tutorial'],
 ) as dag:
 
-    start = DummyOperator(task_id='start')
-
-    hello_task = PythonOperator(
-        task_id='print_hello',
-        python_callable=say_hello,
+    start =  PythonOperator(
+        task_id='print_hello1',
+        python_callable=say_hello1,
     )
 
-    end = DummyOperator(task_id='end')
+    hello_task = PythonOperator(
+        task_id='print_hello2',
+        python_callable=say_hello2,
+    )
+
+    end =  PythonOperator(
+        task_id='print_goodby3',
+        python_callable=say_hello3,
+    )
 
     # Görevler arası sıra
     start >> hello_task >> end
