@@ -30,7 +30,6 @@ with DAG(
     'example_airflow_3',
     default_args=default_args,
     description='Airflow 3.0.1 ile uyumlu örnek DAG',
-    schedule_interval=timedelta(days=1),
     start_date=datetime(2025, 8, 6),
     catchup=False,
     tags=['example'],
