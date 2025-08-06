@@ -38,20 +38,17 @@ with DAG(
 
     start =  PythonOperator(
         task_id='print_hello1',
-        python_callable=say_hello1,
-    capture_output=True
+        python_callable=say_hello1
     )
 
     hello_task = PythonOperator(
         task_id='print_hello2',
-        python_callable=say_hello2,
-        capture_output=True
+        python_callable=say_hello2
     )
 
     end =  PythonOperator(
         task_id='print_goodby3',
-        python_callable=say_hello3,
-        capture_output=True
+        python_callable=say_hello3
     )
 
     # Görevler arası sıra
