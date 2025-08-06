@@ -8,6 +8,7 @@ def say_hello1():
     logging.info("Merhaba, Airflow!")
 
 def say_hello2():
+    logging.basicConfig(level=logging.INFO)
     logging.info("running!")
 
 def say_hello3():
