@@ -3,18 +3,16 @@ from airflow import DAG
 from airflow.operators.python import PythonOperator
 import logging
 
-# Görev olarak çalışacak Python fonksiyonu
+# Görev olarak çalışacak Python fonksiyonları
 def say_hello1():
     logging.info("Merhaba, Airflow!")
-# Görev olarak çalışacak Python fonksiyonu
+
 def say_hello2():
-    logging.info("runing!")
+    logging.info("running!")
 
-
-# Görev olarak çalışacak Python fonksiyonu
 def say_hello3():
-    print("goodby")
-# DAG varsayılan argümanlar
+    logging.info("goodby")  # Burada logging.info kullanılıyor
+
 # Default args
 default_args = {
     'owner': 'airflow',
@@ -24,7 +22,6 @@ default_args = {
     'retries': 1,
     'retry_delay': timedelta(minutes=5),
 }
-
 
 # DAG tanımı
 with DAG(
@@ -36,22 +33,19 @@ with DAG(
     tags=['example'],
 ) as dag:
 
-    start =  PythonOperator(
+    start = PythonOperator(
         task_id='print_hello1',
         python_callable=say_hello1,
-        dag=dag 
     )
 
     hello_task = PythonOperator(
         task_id='print_hello2',
         python_callable=say_hello2,
-        dag=dag 
     )
 
-    end =  PythonOperator(
+    end = PythonOperator(
         task_id='print_goodby3',
         python_callable=say_hello3,
-        dag=dag 
     )
 
     # Görevler arası sıra
