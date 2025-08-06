@@ -1,13 +1,14 @@
 from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.operators.python import PythonOperator
+import logging
 
 # Görev olarak çalışacak Python fonksiyonu
 def say_hello1():
-    print("Merhaba, Airflow!")
+    logging.info("Merhaba, Airflow!")
 # Görev olarak çalışacak Python fonksiyonu
 def say_hello2():
-    print("runing!")
+    logging.info("runing!")
 
 
 # Görev olarak çalışacak Python fonksiyonu
@@ -38,16 +39,19 @@ with DAG(
     start =  PythonOperator(
         task_id='print_hello1',
         python_callable=say_hello1,
+    capture_output=True
     )
 
     hello_task = PythonOperator(
         task_id='print_hello2',
         python_callable=say_hello2,
+        capture_output=True
     )
 
     end =  PythonOperator(
         task_id='print_goodby3',
         python_callable=say_hello3,
+        capture_output=True
     )
 
     # Görevler arası sıra
