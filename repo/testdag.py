@@ -30,7 +30,7 @@ with DAG(
 ) as dag:
 
     start = PythonOperator(
-        task_id='test op',
+        task_id='test_op',
         python_callable=say_hello1,
     )
 
